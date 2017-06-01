@@ -1,5 +1,13 @@
 To Do:
 Create the Anaconda
 Activate Anaconda
+  select the "Anacond Prompt"
+    by default starts "root" env
 Activate Jupyter
+    for RoboND..
+      activate RoboND env
+      juypter notebook
 Start the Rover Project
+  cd  RoboND-Rover-Project
+  activate RoboND
+  python drive_rover.py 
