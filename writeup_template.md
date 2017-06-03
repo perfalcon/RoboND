@@ -31,17 +31,18 @@ You're reading it!
 Here is an example of how to include an image in your writeup.
 
 Created a function to find the navigable terrain by threshing the image color channels greater than  RGB(160,160,160)
-Then created functions to convert the navigable terrain pixels to Rover coordinates.
+Then created functions to convert the navigable terrain pixels to Rover coordinates. Below are the images for original, terrain , threshed 
 ![Navigable Terrain][terrain]
 
 
 Created a function to detect the golden rocks (samples) by threshing the image within a color range using opencv library.
+Below are images for original rock image and its threshed image
 ![rock sample][rock-sample]
 
 
 
 Created a function to detect the obstacle by threshing the image color channels less than RGB(160,160,160).
-
+Below are the different obstacles images with their threshed images
 ![Obstacle][obstacle]
 ![Obstacle1][obstacle1]
 ![Obstacle2][obstacle2]
