@@ -9,6 +9,7 @@
 
 [image1]: ./misc/rover_image.jpg
 [image2]: ./calibration_images/example_grid1.jpg
+[terrain]: ./terrain-warped-threshed-nav.png
 [obstacle]: ./obstacle.png 
 [obstacle1]: ./obstacle-1.png 
 [obstacle2]: ./obstacle-2.png 
@@ -30,20 +31,16 @@ You're reading it!
 Here is an example of how to include an image in your writeup.
 
 Created a function to find the navigable terrain by threshing the image color channels greater than  RGB(160,160,160)
-Original Image               Navigable Terrain
-
-![Original][image1]         ![Navigable][navigable]
+Then created functions to convert the navigable terrain pixels to Rover coordinates.
+![Navigable Terrain][terrain]
 
 
 Created a function to detect the golden rocks (samples) by threshing the image within a color range using opencv library.
-Original Image               Golden Rocks Terrain
-
 ![rock sample][rock-sample]
 
 
 
 Created a function to detect the obstacle by threshing the image color channels less than RGB(160,160,160).
-Original Image               Obstacle Terrain
 
 ![Obstacle][obstacle]
 ![Obstacle1][obstacle1]
@@ -51,7 +48,7 @@ Original Image               Obstacle Terrain
 
 
 
-Then created functions to convert the navigable pixels to Rover coordinates.
+
 
 
 #### 1. Populate the `process_image()` function with the appropriate analysis steps to map pixels identifying navigable terrain, obstacles and rock samples into a worldmap.  Run `process_image()` on your test data using the `moviepy` functions provided to create video output of your result. 
