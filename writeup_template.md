@@ -71,18 +71,9 @@ Ran this method on the recorded navigation images and below the video of the map
 
 Updated the Rover.vision_image to display the obstacle , rock sample and navigable terrain in a threshed binary images.
 The converted the map image pixels to rover-centeric coords with rover_coords function, and then converted the rover-centri pixels to world coordinates. Then updated the rover worldmap to show the obstacle,samples and navigable terrain.
-
-    # 5) Convert map image pixel values to rover-centric coords
-    # 6) Convert rover-centric pixel values to world coordinates
-    # 7) Update Rover worldmap (to be displayed on right side of screen)
-        # Example: Rover.worldmap[obstacle_y_world, obstacle_x_world, 0] += 1
-        #          Rover.worldmap[rock_y_world, rock_x_world, 1] += 1
-        #          Rover.worldmap[navigable_y_world, navigable_x_world, 2] += 1
-
-    # 8) Convert rover-centric pixel positions to polar coordinates
+After that converted the rover-centric pixel to polar coordinates to enable the direction to streer.
 
 #### 2. Launching in autonomous mode your rover can navigate and map autonomously.  Explain your results and how you might improve them in your writeup.  
-
 
 Used Resolutions : 
 1280 x 800
