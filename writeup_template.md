@@ -10,6 +10,8 @@
 [image1]: ./misc/rover_image.jpg
 [image2]: ./calibration_images/example_grid1.jpg
 [obstacle]: ./obstacle.png 
+[obstacle1]: ./obstacle1.png 
+[obstacle2]: ./obstacle2.png 
 [rock-sample]: ./rock-sampled-threshed.png
 [output-video]: ./test_mapping.mp4
 
@@ -43,7 +45,11 @@ Original Image               Golden Rocks Terrain
 Created a function to detect the obstacle by threshing the image color channels less than RGB(160,160,160).
 Original Image               Obstacle Terrain
 
-![Original][image1]         ![Obstacle][obstacle]
+![Obstacle][obstacle]
+![Obstacle1][obstacle1]
+![Obstacle2][obstacle2]
+
+
 
 Then created functions to convert the navigable pixels to Rover coordinates.
 
