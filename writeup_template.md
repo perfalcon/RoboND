@@ -32,17 +32,20 @@ Here is an example of how to include an image in your writeup.
 
 Created a function to find the navigable terrain by threshing the image color channels greater than  RGB(160,160,160)
 Then created functions to convert the navigable terrain pixels to Rover coordinates. Below are the images for original, terrain , threshed 
+
 ![Navigable Terrain][terrain]
 
 
 Created a function to detect the golden rocks (samples) by threshing the image within a color range using opencv library.
 Below are images for original rock image and its threshed image
+
 ![rock sample][rock-sample]
 
 
 
 Created a function to detect the obstacle by threshing the image color channels less than RGB(160,160,160).
 Below are the different obstacles images with their threshed images
+
 ![Obstacle][obstacle]
 ![Obstacle1][obstacle1]
 ![Obstacle2][obstacle2]
@@ -56,7 +59,7 @@ Below are the different obstacles images with their threshed images
 
 In this functions, called the navigable terrain, convert to rover coordinates, detect the samples and obstacles.
 Then added the navigable terrain, rocks, and obstacles on to the ground truth map.
-Ran this method on the recorded navigation images and below the video of the mapping of the terrain, rocks and smples on the ground truth map in moveipy functions.
+Ran this method on the recorded navigation images and below the video of the mapping of the terrain, rocks and smples on the ground truth map in moveipy functions. Below is the generated video
 
 
 ![Test OutPut Video][output-video]
@@ -64,9 +67,25 @@ Ran this method on the recorded navigation images and below the video of the map
 ### Autonomous Navigation and Mapping
 
 #### 1. Fill in the `perception_step()` (at the bottom of the `perception.py` script) and `decision_step()` (in `decision.py`) functions in the autonomous mapping scripts and an explanation is provided in the writeup of how and why these functions were modified as they were.
+   Defined source and destination points for perspective transform, then applied the perspective transform with perspect_transform function. Applied the color threshold to identify navigable terrain ( color_thresh) /obstacles(obstacle_detection)/rock samples (rock_detection) functions.
 
+Updated the Rover.vision_image to display the obstacle , rock sample and navigable terrain in a threshed binary images.
+The converted the map image pixels to rover-centeric coords with rover_coords function, and then converted the rover-centri pixels to world coordinates. Then updated the rover worldmap to show the obstacle,samples and navigable terrain.
+
+    # 5) Convert map image pixel values to rover-centric coords
+    # 6) Convert rover-centric pixel values to world coordinates
+    # 7) Update Rover worldmap (to be displayed on right side of screen)
+        # Example: Rover.worldmap[obstacle_y_world, obstacle_x_world, 0] += 1
+        #          Rover.worldmap[rock_y_world, rock_x_world, 1] += 1
+        #          Rover.worldmap[navigable_y_world, navigable_x_world, 2] += 1
+
+    # 8) Convert rover-centric pixel positions to polar coordinates
 
 #### 2. Launching in autonomous mode your rover can navigate and map autonomously.  Explain your results and how you might improve them in your writeup.  
+
+
+Used Resolutions : 
+1280 x 800
 
 **Note: running the simulator with different choices of resolution and graphics quality may produce different results, particularly on different machines!  Make a note of your simulator settings (resolution and graphics quality set on launch) and frames per second (FPS output to terminal by `drive_rover.py`) in your writeup when you submit the project so your reviewer can reproduce your results.**
 
