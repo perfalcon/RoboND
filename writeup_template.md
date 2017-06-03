@@ -10,8 +10,8 @@
 [image1]: ./misc/rover_image.jpg
 [image2]: ./calibration_images/example_grid1.jpg
 [obstacle]: ./obstacle.png 
-[obstacle-1]: ./obstacle1.png 
-[obstacle-2]: ./obstacle2.png 
+[obstacle1]: ./obstacle-1.png 
+[obstacle2]: ./obstacle-2.png 
 [rock-sample]: ./rock-sampled-threshed.png
 [output-video]: ./test_mapping.mp4
 
