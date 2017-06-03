@@ -36,7 +36,7 @@ Original Image               Navigable Terrain
 Created a function to detect the golden rocks (samples) by threshing the image within a color range using opencv library.
 Original Image               Golden Rocks Terrain
 
-![Original][image1]         ![Samples][sample]
+![rock sample][rock-sample]
 
 
 
