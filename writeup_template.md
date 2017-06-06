@@ -6,8 +6,6 @@
 
 [//]: # (Image References)
 
-[image1]: ./misc/rover_image.jpg
-[image2]: ./calibration_images/example_grid1.jpg
 [terrain]: ./terrain-warped-threshed-nav.png
 [obstacle]: ./obstacle.png 
 [obstacle1]: ./obstacle-1.png 
@@ -21,15 +19,30 @@
 
 ### Notebook Analysis
 #### 1. Run the functions provided in the notebook on test images (first with the test data provided, next on data you have recorded). Add/modify functions to allow for color selection of obstacles and rock samples.
-Here is an example of how to include an image in your writeup.
+
 
 Created a function to find the navigable terrain by threshing the image color channels greater than  RGB(160,160,160)
-Then created functions to convert the navigable terrain pixels to Rover coordinates. Below are the images for original, terrain , threshed 
+Then created functions to convert the navigable terrain pixels to Rover coordinates.
+
+Functions:
+color_thresh(img, rgb_thresh=(160, 160, 160)):
+rover_coords(binary_img):
+to_polar_coords(x_pixel, y_pixel):
+translate_pix(xpix_rot, ypix_rot, xpos, ypos, scale): 
+pix_to_world(xpix, ypix, xpos, ypos, yaw, world_size, scale):
+perspect_transform(img, src, dst):
+
+Below are the images for original, terrain , threshed 
 
 ![Navigable Terrain][terrain]
 
 
+
+
 Created a function to detect the golden rocks (samples) by threshing the image within a color range using opencv library.
+rock_detection(img, rgb_rock_low=(0, 0, 0),rgb_rock_hi=(0,0,0)):
+
+
 Below are images for original rock image and its threshed image
 
 ![rock sample][rock-sample]
@@ -37,6 +50,7 @@ Below are images for original rock image and its threshed image
 
 
 Created a function to detect the obstacle by threshing the image color channels less than RGB(160,160,160).
+obstacle_detection(img, rgb_thresh=(160, 160, 160)):
 Below are the different obstacles images with their threshed images
 
 ![Obstacle][obstacle]
