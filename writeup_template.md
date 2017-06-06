@@ -25,17 +25,17 @@ Created a function to find the navigable terrain by threshing the image color ch
 Then created functions to convert the navigable terrain pixels to Rover coordinates.
 
 **Functions:**
-  color_thresh(img, rgb_thresh=(160, 160, 160)): 
+ * color_thresh(img, rgb_thresh=(160, 160, 160)): 
      -- This generates the navigatable binary image.
-  perspect_transform(img, src, dst):
+ * perspect_transform(img, src, dst):
      -- 
-  rover_coords(binary_img): 
+ * rover_coords(binary_img): 
      -- Finds the Rover coords, its current position
-  to_polar_coords(x_pixel, y_pixel):
+ * to_polar_coords(x_pixel, y_pixel):
       -- In this function find the distance and navigable angles
-  translate_pix(xpix_rot, ypix_rot, xpos, ypos, scale): 
+ * translate_pix(xpix_rot, ypix_rot, xpos, ypos, scale): 
       -- 
-  pix_to_world(xpix, ypix, xpos, ypos, yaw, world_size, scale):
+  * pix_to_world(xpix, ypix, xpos, ypos, yaw, world_size, scale):
       -- Called the above functions ( perspect_tranform, rover_coord, translate_pix)
   
 
@@ -92,11 +92,16 @@ After that converted the rover-centric pixel to polar coordinates to enable the 
 For every frame from the Rover's camera is processed by the Perception and Decision, to decide what is there infront of the rover and take action accordingly.
 **Perception**
   This function helps to process the frame, find the position of the rover, decide how long is the navigable terrain available, at the same time check whether there are any obstacles and samples to pickup.
-**Decision **
+**Decision**
   After every frame is processed and the respective values assigned to the Rover's State object, this function enables to take the decision by reading the values from Rover's state, whether to move forward, stop, turn , throttle, or to pick up the samples.
   At first the Rover starts to move in forward direction.
   First I check whether there is any visible terrain, that i will get from the Rover.nav_angles, if it is not null , then i will check whether my Rover is moving in the Forward or Stopped mode from Rover.mode.
-  When my Rover is "Forward", I will check, whether I have enough of navigable terrain by checking the number of Rover.nav_angles greater than the Rover.stop_forward limit. If I more nav_anlges, then I will check the throttle, if it is less than the max_vel, then give an acceleration by increasing the throttle to throttle_set, else decrease the throttle.
+  When my Rover is in "Forward", I will check, whether I have enough of navigable terrain by checking the number of Rover.nav_angles greater than the Rover.stop_forward limit. If I more nav_anlges, then I will check the throttle, if it is less than the max_vel, then give an acceleration by increasing the throttle to throttle_set, else decrease the throttle. Then I will release the brakes and turn in the direction of more navigable terrain by taking the mean of nav_angles and check the mean in the limit of -15(right turn) & +15 (Left Turn).
+  When I don't have enough of navigable terrain, I make my rover to stop, by assigning the Rover.mode=stop, apply the brakes, stop the acceleration and no steering.
+ When my Rover is in "Stop", if still my velocity is more than 0.2, then I will apply the brakes and stop the throttle and no turns.
+ Then I will check whether Rover has any vision to move forward when Rover.nav_angles is less the Rover.go_forwad limit, if so, then stop throttle, release brakes and make turn.
+ When the Rover is in stop mode, if Rover has enough of navigable terrain by checking the number of Rover.nav_angles greater than Rover.go_forwar, if so, increase throttle, release brake, make turn and move forward.
+ 
 
 
 #### 2. Launching in autonomous mode your rover can navigate and map autonomously.  Explain your results and how you might improve them in your writeup.  
@@ -107,10 +112,10 @@ Used Resolutions :
 **Note: running the simulator with different choices of resolution and graphics quality may produce different results, particularly on different machines!  Make a note of your simulator settings (resolution and graphics quality set on launch) and frames per second (FPS output to terminal by `drive_rover.py`) in your writeup when you submit the project so your reviewer can reproduce your results.**
 
 
-I want to improve the following
-1.Some times at the dead ends, it is falling into circular rotation going into infine loop
-2.Update the code to pickup all the samples
-3.Some times near some big rock, it is getting stuck, want to manuever properly to get out the rocks (obstacles).
+**I want to improve the following**
+1. Some times at the dead ends, it is falling into circular rotation going into infine loop
+2. Update the code to pickup all the samples
+3. Some times near some big rock, it is getting stuck, want to manuever properly to get out the rocks (obstacles).
 
 
 
