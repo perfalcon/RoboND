@@ -25,12 +25,12 @@ Created a function to find the navigable terrain by threshing the image color ch
 Then created functions to convert the navigable terrain pixels to Rover coordinates.
 
 Functions:
-color_thresh(img, rgb_thresh=(160, 160, 160)):
-rover_coords(binary_img):
-to_polar_coords(x_pixel, y_pixel):
-translate_pix(xpix_rot, ypix_rot, xpos, ypos, scale): 
-pix_to_world(xpix, ypix, xpos, ypos, yaw, world_size, scale):
-perspect_transform(img, src, dst):
+  color_thresh(img, rgb_thresh=(160, 160, 160)): -- This generates the navigatable binary image.
+  rover_coords(binary_img): -- Finds the Rover coords, its current position
+  to_polar_coords(x_pixel, y_pixel):
+  translate_pix(xpix_rot, ypix_rot, xpos, ypos, scale): 
+  pix_to_world(xpix, ypix, xpos, ypos, yaw, world_size, scale):
+  perspect_transform(img, src, dst):
 
 Below are the images for original, terrain , threshed 
 
@@ -96,8 +96,5 @@ I want to improve the following
 
 
 
-
-
-![alt text][image3]
 
 
