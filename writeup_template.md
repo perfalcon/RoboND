@@ -84,6 +84,8 @@ After that converted the rover-centric pixel to polar coordinates to enable the 
 
 
 For every frame from the Rover's camera is processed by the Perception and Decision, to decide what is there infront of the rover and take action accordingly.
+
+
 **Perception**
   This function helps to process the frame, find the position of the rover, decide how long is the navigable terrain available, at the same time check whether there are any obstacles to avoid and samples to pickup.
   For every frame the Rover sees, that image is processed, first to see the there is a navigable terrain, by doing a color thresh and get the binary image, which shows whether it has a terrain to move forward. 
