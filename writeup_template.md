@@ -29,8 +29,7 @@ Then created functions to convert the navigable terrain pixels to Rover coordina
  * perspect_transform(img, src, dst):
  * rover_coords(binary_img): -- Finds the Rover coords, its current position
  * to_polar_coords(x_pixel, y_pixel): -- In this function find the distance and navigable angles
- * translate_pix(xpix_rot, ypix_rot, xpos, ypos, scale): 
-      -- 
+ * translate_pix(xpix_rot, ypix_rot, xpos, ypos, scale): -- In tihis
   
 
 Below are the images for original, terrain , threshed 
