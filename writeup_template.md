@@ -88,6 +88,17 @@ Updated the Rover.vision_image to display the obstacle , rock sample and navigab
 Then converted the map image pixels to rover-centeric coords with rover_coords function, and then converted the rover-centri pixels to world coordinates. Then updated the rover worldmap to show the obstacle,samples and navigable terrain.
 After that converted the rover-centric pixel to polar coordinates to enable the direction to streer.
 
+
+For every frame from the Rover's camera is processed by the Perception and Decision, to decide what is there infront of the rover and take action accordingly.
+**Perception**
+  This function helps to process the frame, find the position of the rover, decide how long is the navigable terrain available, at the same time check whether there are any obstacles and samples to pickup.
+**Decision **
+  After every frame is processed and the respective values assigned to the Rover's State object, this function enables to take the decision by reading the values from Rover's state, whether to move forward, stop, turn , throttle, or to pick up the samples.
+  At first the Rover starts to move in forward direction.
+  First I check whether there is any visible terrain, that i will get from the Rover.nav_angles, if it is not null , then i will check whether my Rover is moving in the Forward or Stopped mode from Rover.mode.
+  When my Rover is "Forward", I will check, whether I have enough of navigable terrain by checking the number of Rover.nav_angles greater than the Rover.stop_forward limit. If I more nav_anlges, then I will check the throttle, if it is less than the max_vel, then give an acceleration by increasing the throttle to throttle_set, else decrease the throttle.
+
+
 #### 2. Launching in autonomous mode your rover can navigate and map autonomously.  Explain your results and how you might improve them in your writeup.  
 
 Used Resolutions : 
