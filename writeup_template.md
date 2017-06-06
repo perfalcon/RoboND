@@ -24,13 +24,20 @@
 Created a function to find the navigable terrain by threshing the image color channels greater than  RGB(160,160,160)
 Then created functions to convert the navigable terrain pixels to Rover coordinates.
 
-Functions:
-  color_thresh(img, rgb_thresh=(160, 160, 160)): -- This generates the navigatable binary image.
-  rover_coords(binary_img): -- Finds the Rover coords, its current position
-  to_polar_coords(x_pixel, y_pixel):
-  translate_pix(xpix_rot, ypix_rot, xpos, ypos, scale): 
-  pix_to_world(xpix, ypix, xpos, ypos, yaw, world_size, scale):
+**Functions:**
+  color_thresh(img, rgb_thresh=(160, 160, 160)): 
+     -- This generates the navigatable binary image.
   perspect_transform(img, src, dst):
+     -- 
+  rover_coords(binary_img): 
+     -- Finds the Rover coords, its current position
+  to_polar_coords(x_pixel, y_pixel):
+      -- In this function find the distance and navigable angles
+  translate_pix(xpix_rot, ypix_rot, xpos, ypos, scale): 
+      -- 
+  pix_to_world(xpix, ypix, xpos, ypos, yaw, world_size, scale):
+      -- Called the above functions ( perspect_tranform, rover_coord, translate_pix)
+  
 
 Below are the images for original, terrain , threshed 
 
