@@ -87,25 +87,38 @@ For every frame from the Rover's camera is processed by the Perception and Decis
 
 **Perception**
   This function helps to process the frame, find the position of the rover, decide how long is the navigable terrain available, at the same time check whether there are any obstacles to avoid and samples to pickup.
+
   For every frame the Rover sees, that image is processed, first to see the there is a navigable terrain, by doing a color thresh and get the binary image, which shows whether it has a terrain to move forward. 
+
   Here we apply the perspect transformation to conver the Rover vision and position to a top-down view and this is what we get warped image.
+
   Then will get the Rover coordinates and get the distance and available angles for the navigable terrain pixels.
   
   Then detect the obstacles by color thresh with a threshold of less than RGB(160,160,160) and create a binary image for the obstacle.
+
   Then detect the samples by color thresh with a threshold range between RGB(70,150,100) and RGB(0,255,255) and create a binary image for the sample.
   
   Then at the same time, warped the image to real world 
   
   
 **Decision**
+
+
   After every frame is processed and the respective values assigned to the Rover's State object, this function enables to take the   decision by reading the values from Rover's state, whether to move forward, stop, turn , throttle, or to pick up the samples.
+
   At first the Rover starts to move in forward direction.
+
   First I check whether there is any visible terrain, that i will get from the Rover.nav_angles, if it is not null , then i will check whether my Rover is moving in the Forward or Stopped mode from Rover.mode.
+
   When my Rover is in "Forward", I will check, whether I have enough of navigable terrain by checking the number of Rover.nav_angles greater than the Rover.stop_forward limit. If I more nav_anlges, then I will check the throttle, if it is less than the max_vel, then give an acceleration by increasing the throttle to throttle_set, else decrease the throttle. Then I will release the brakes and turn in the direction of more navigable terrain by taking the mean of nav_angles and check the mean in the limit of -15(right turn) & +15 (Left Turn).
+
   When I don't have enough of navigable terrain, I make my rover to stop, by assigning the Rover.mode=stop, apply the brakes, stop the acceleration and no steering.
+
  When my Rover is in "Stop", if still my velocity is more than 0.2, then I will apply the brakes and stop the throttle and no turns.
+
  Then I will check whether Rover has any vision to move forward when Rover.nav_angles is less the Rover.go_forwad limit, if so, then stop throttle, release brakes and make turn.
- When the Rover is in stop mode, if Rover has enough of navigable terrain by checking the number of Rover.nav_angles greater than Rover.go_forwar, if so, increase throttle, release brake, make turn and move forward.
+
+ When the Rover is in stop mode, if Rover has enough of navigable terrain by checking the number of Rover.nav_angles greater than Rover.go_forward, if so, increase throttle, release brake, make turn and move forward.
 
 At any time , if the Rover is near a sample, tries to pickup of the sample ( to be implemented fully).
 
@@ -123,7 +136,6 @@ Used Resolutions :
 1. Some times at the dead ends, it is falling into circular rotation going into infine loop
 2. Update the code to pickup all the samples
 3. Some times near some big rock, it is getting stuck, want to manuever properly to get out the rocks (obstacles).
-
 
 
 
