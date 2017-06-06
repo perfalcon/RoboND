@@ -35,7 +35,7 @@ Then created functions to convert the navigable terrain pixels to Rover coordina
       -- In this function find the distance and navigable angles
  * translate_pix(xpix_rot, ypix_rot, xpos, ypos, scale): 
       -- 
-  * pix_to_world(xpix, ypix, xpos, ypos, yaw, world_size, scale):
+ * pix_to_world(xpix, ypix, xpos, ypos, yaw, world_size, scale):
       -- Called the above functions ( perspect_tranform, rover_coord, translate_pix)
   
 
