@@ -1,6 +1,7 @@
 ## Project: Search and Sample Return
 
 
+
 [//]: # (Image References)
 
 [terrain]: ./terrain-warped-threshed-nav.png
@@ -17,9 +18,7 @@
 ### Notebook Analysis
 #### 1. Run the functions provided in the notebook on test images (first with the test data provided, next on data you have recorded). Add/modify functions to allow for color selection of obstacles and rock samples.
 
-
-Created a function to find the navigable terrain by threshing the image color channels greater than  RGB(160,160,160)
-Then created functions to convert the navigable terrain pixels to Rover coordinates.
+Following are the functions created  to find the navigable terrain and converted the navigable terrain pixels to Rover coordinates.
 
 **Functions:**
 
@@ -36,8 +35,10 @@ Below are the images for original, terrain , threshed
 
 ![Navigable Terrain][terrain]
 
+---
 
 
+**Samples**
 
 Created a function to detect the golden rocks (samples) by threshing the image within a color range using opencv library.
 rock_detection(img, rgb_rock_low=(0, 0, 0),rgb_rock_hi=(0,0,0)):
@@ -48,6 +49,9 @@ Below are images for original rock image and its threshed image
 ![rock sample][rock-sample]
 
 
+---
+
+**Obstacles**
 
 Created a function to detect the obstacle by threshing the image color channels less than RGB(160,160,160).
 obstacle_detection(img, rgb_thresh=(160, 160, 160)):
@@ -58,9 +62,9 @@ Below are the different obstacles images with their threshed images
 ![Obstacle2][obstacle2]
 
 
+---
 
-
-
+**Process_image()** 
 
 #### 1. Populate the `process_image()` function with the appropriate analysis steps to map pixels identifying navigable terrain, obstacles and rock samples into a worldmap.  Run `process_image()` on your test data using the `moviepy` functions provided to create video output of your result. 
 
@@ -74,6 +78,9 @@ Ran this method on the recorded navigation images and below is the video of the 
 
 
 ![Test OutPut Video][output-video]
+
+
+---
 
 ### Autonomous Navigation and Mapping
 
@@ -90,6 +97,7 @@ After that converted the rover-centric pixel to polar coordinates to enable the 
 
 For every frame from the Rover's camera is processed by the Perception and Decision, to decide what is there infront of the rover and take action accordingly.
 
+---
 
 **Perception**
 
@@ -109,7 +117,8 @@ For every frame from the Rover's camera is processed by the Perception and Decis
 
 At end updated the Rover.nav_dist and Rover.nav_angles, which are received from to_polar_coords function.
   
-  
+---  
+
 **Decision**
 
 
@@ -135,13 +144,17 @@ At any time , if the Rover is near a sample, tries to pickup of the sample ( to 
 
 #### 2. Launching in autonomous mode your rover can navigate and map autonomously.  Explain your results and how you might improve them in your writeup.  
 
-Used Resolutions : 
-1280 x 800
+Used following screen resolutions to run the simulator: 
 
-**Note: running the simulator with different choices of resolution and graphics quality may produce different results, particularly on different machines!  Make a note of your simulator settings (resolution and graphics quality set on launch) and frames per second (FPS output to terminal by `drive_rover.py`) in your writeup when you submit the project so your reviewer can reproduce your results.**
+* Screen Size - 1280 x 800
+* Graphics quality - Fantastic.
+
+I see the rover navigates with more than 60% of Fidelity and for more than 40% of navigation. It is showing the samples on the world map whenever the rover is passing them.
 
 
 **I want to improve the following**
+
 1.  Some times at the dead ends, it is falling into circular rotation going into infinite loop
-2.  Update the code to pickup all the samples
+2.  Enhance the code to pickup all the samples
 3.  Some times near some big rock, it is getting stuck, want to maneuver properly to get out the rocks (obstacles).
+
