@@ -1,8 +1,5 @@
 ## Project: Search and Sample Return
 
----
-
-
 
 [//]: # (Image References)
 
@@ -25,12 +22,15 @@ Created a function to find the navigable terrain by threshing the image color ch
 Then created functions to convert the navigable terrain pixels to Rover coordinates.
 
 **Functions:**
- * color_thresh(img, rgb_thresh=(160, 160, 160)):-- This generates the navigatable binary image.
- * perspect_transform(img, src, dst):
- * rover_coords(binary_img): -- Finds the Rover coords, its current position
- * to_polar_coords(x_pixel, y_pixel): -- In this function find the distance and navigable angles
- * translate_pix(xpix_rot, ypix_rot, xpos, ypos, scale): -- In tihis
-  
+
+ * color_thresh(img, rgb_thresh=(160, 160, 160)):-- This generates the navigable binary image.
+ * perspect_transform(img, src, dst): --  Performs  a perspective transformation
+ * rover_coords(binary_img): -- Calculate pixel positions with reference to the rover position being at the  center bottom of the image.
+ * to_ polar_coords(x_pixel, y_pixel): --convert to radial coords in rover space, i.e.,  find the distance and navigable angles
+*  rotate_pix(xpix, ypix, yaw): -- Applies a rotation to pixel positions
+ * translate_pix(xpix_rot, ypix_rot, xpos, ypos, scale): -- This methods applies  rotation and translation (and clipping)
+ * obstacle_detection(img, rgb_thresh=(160, 160, 160)): -- Detects the obstacles.
+ * rock_detection(img, rgb_rock_low=(0, 0, 0),rgb_rock_hi=(0,0,0)): --- Detects the Samples within the specified RGB range
 
 Below are the images for original, terrain , threshed 
 
@@ -65,9 +65,12 @@ Below are the different obstacles images with their threshed images
 #### 1. Populate the `process_image()` function with the appropriate analysis steps to map pixels identifying navigable terrain, obstacles and rock samples into a worldmap.  Run `process_image()` on your test data using the `moviepy` functions provided to create video output of your result. 
 
 In this function, defined the source and destination which I arrived at by measuring the pixels of rover's camera view, then translated those coordinates into a top-down view of the Rover.
+
 Then warped the rover's top down view and applied the threshold to get the navigable terrain, then converted the navigable terrain to rover coordinates, then called functions to detect the samples and obstacles.
+
 Then added the navigable terrain, rocks, and obstacles on to the ground truth map.
-Ran this method on the recorded navigation images and below is the video of the mapping of the terrain, rocks and smples on the ground truth map in moveipy functions. Below is the generated video
+
+Ran this method on the recorded navigation images and below is the video of the mapping of the terrain, rocks and samples on the ground truth map in moveipy functions. Below is the generated video
 
 
 ![Test OutPut Video][output-video]
@@ -75,10 +78,13 @@ Ran this method on the recorded navigation images and below is the video of the 
 ### Autonomous Navigation and Mapping
 
 #### 1. Fill in the `perception_step()` (at the bottom of the `perception.py` script) and `decision_step()` (in `decision.py`) functions in the autonomous mapping scripts and an explanation is provided in the writeup of how and why these functions were modified as they were.
-   Defined source and destination points for perspective transform, then applied the perspective transform with perspect_transform function. Applied the color threshold to identify navigable terrain ( color_thresh) /obstacles(obstacle_detection)/rock samples (rock_detection) functions.
+   
+Defined source and destination points for perspective transform, then applied the perspective transform with perspect_transform function. Applied the color threshold to identify navigable terrain ( color_thresh) /obstacles(obstacle_detection)/rock samples (rock_detection) functions.
 
 Updated the Rover.vision_image to display the obstacle , rock sample and navigable terrain in a threshed binary images.
-Then converted the map image pixels to rover-centeric coords with rover_coords function, and then converted the rover-centri pixels to world coordinates. Then updated the rover worldmap to show the obstacle,samples and navigable terrain.
+
+Then converted the map image pixels to rover-centeric coords with rover_coords function, and then converted the rover-
+centric pixels to world coordinates. Then updated the rover worldmap to show the obstacle,samples and navigable terrain.
 After that converted the rover-centric pixel to polar coordinates to enable the direction to streer.
 
 
@@ -86,6 +92,7 @@ For every frame from the Rover's camera is processed by the Perception and Decis
 
 
 **Perception**
+
   This function helps to process the frame, find the position of the rover, decide how long is the navigable terrain available, at the same time check whether there are any obstacles to avoid and samples to pickup.
 
   For every frame the Rover sees, that image is processed, first to see the there is a navigable terrain, by doing a color thresh and get the binary image, which shows whether it has a terrain to move forward. 
@@ -98,7 +105,9 @@ For every frame from the Rover's camera is processed by the Perception and Decis
 
   Then detect the samples by color thresh with a threshold range between RGB(70,150,100) and RGB(0,255,255) and create a binary image for the sample.
   
-  Then at the same time, warped the image to real world 
+  Then Updated the Rover.worldmap to display the obstacles as red, samples in green, and terrain in blue.
+
+At end updated the Rover.nav_dist and Rover.nav_angles, which are received from to_polar_coords function.
   
   
 **Decision**
@@ -133,10 +142,6 @@ Used Resolutions :
 
 
 **I want to improve the following**
-1. Some times at the dead ends, it is falling into circular rotation going into infine loop
-2. Update the code to pickup all the samples
-3. Some times near some big rock, it is getting stuck, want to manuever properly to get out the rocks (obstacles).
-
-
-
-
+1.  Some times at the dead ends, it is falling into circular rotation going into infinite loop
+2.  Update the code to pickup all the samples
+3.  Some times near some big rock, it is getting stuck, want to maneuver properly to get out the rocks (obstacles).
