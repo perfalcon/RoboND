@@ -40,20 +40,17 @@ def to_polar_coords(x_pixel, y_pixel):
 
 # Define a function to apply a rotation to pixel positions
 def rotate_pix(xpix, ypix, yaw):
-    # TODO:
     # Convert yaw to radians
     # Apply a rotation
-    xpix_rotated = 0
-    ypix_rotated = 0
+    yaw_rad = yaw * np.pi / 180
+    xpix_rotated = xpix * np.cos(yaw_rad) - ypix * np.sin(yaw_rad)
+    ypix_rotated = xpix * np.sin(yaw_rad) + ypix * np.cos(yaw_rad)
     # Return the result  
     return xpix_rotated, ypix_rotated
 
 # Define a function to perform a translation
 def translate_pix(xpix_rot, ypix_rot, xpos, ypos, scale): 
-    # TODO:
     # Apply a scaling and a translation
-    xpix_translated = 0
-    ypix_translated = 0
     # Perform translation and convert to integer since pixel values can't be float
     xpix_translated = np.int_(xpos + (xpix_rot / scale))
     ypix_translated = np.int_(ypos + (ypix_rot / scale))
@@ -107,7 +104,7 @@ def rock_detection(img, rgb_rock_low=(0, 0, 0),rgb_rock_hi=(0,0,0)):
     # Threshold the HSV image to get only yellow colors
     mask = cv2.inRange(img, lower_yellow, upper_yellow) 
     # Index the array of zeros with the boolean array and set to 1
-    color_select=mask
+    color_select[mask]=1
     # Return the binary image
     return color_select
 
@@ -151,12 +148,14 @@ def perception_step(Rover):
     rgb_low = (70,150,100)
     rgb_high= (0,255,255)
     rock = rock_detection(img,rgb_low,rgb_high)
-
     
-    Rover.vision_image[:,:,0] = obstacle
-    Rover.vision_image[:,:,1] = rock
-    Rover.vision_image[:,:,2] = threshed
+    Rover.terrain = threshed
+    Rover.vision_image[:,:,0] = obstacle * 255.0
+    Rover.vision_image[:,:,1] = rock * 255.0
+    Rover.vision_image[:,:,2] = threshed *255.0
     
+    print ("this is Rover.vision_image shape ",Rover.vision_image.shape)
+    print ("this is the max value ",np.max(Rover.vision_image))
     
     xpix, ypix = rover_coords(threshed)
     Rover.nav_dist, Rover.nav_angles = to_polar_coords(xpix, ypix)
@@ -164,31 +163,32 @@ def perception_step(Rover):
     worldmap = np.zeros((200, 200))
     scale = 10
    
-
-
     rover_yaw = Rover.yaw
     rover_xpos = Rover.pos[0]
     rover_ypos = Rover.pos[1]
     
-    navigable_x_world, navigable_y_world = pix_to_world(xpix, ypix, rover_xpos, 
-                                rover_ypos, rover_yaw, 
-                                worldmap.shape[0], scale)
-    #worldmap[y_world, x_world,2] += 10
-    
+    navigable_x_world, navigable_y_world = pix_to_world(xpix, ypix, rover_xpos, rover_ypos, rover_yaw,worldmap.shape[0], scale)
+       
     #rock:
     rock_xpix,rock_ypix=rover_coords(rock)
     rock_x_world,rock_y_world=pix_to_world(rock_xpix, rock_ypix, rover_xpos,rover_ypos, rover_yaw, worldmap.shape[0], scale)
-    #worldmap[rock_y_world, rock_x_world, 1] += 100
+ 
     #obstacle
     ob_xpix,ob_ypix=rover_coords(obstacle)
-    obstacle_x_world,obstacle_y_world=pix_to_world(ob_xpix, ob_ypix, rover_xpos, 
-                                rover_ypos, rover_yaw, 
-                                worldmap.shape[0], scale)
-    #worldmap[ob_y_world, ob_x_world, 0] += 100
+    obstacle_x_world,obstacle_y_world=pix_to_world(ob_xpix, ob_ypix, rover_xpos,rover_ypos, rover_yaw, worldmap.shape[0], scale)
+    
     
     Rover.worldmap[obstacle_y_world, obstacle_x_world, 0] += 1
-    Rover.worldmap[rock_y_world, rock_x_world, 2] += 100
-    Rover.worldmap[navigable_y_world, navigable_x_world, 1] += 1
+    Rover.worldmap[rock_y_world, rock_x_world, 1] += 1
+    Rover.worldmap[navigable_y_world, navigable_x_world, 2] += 1
                                                    
-                                                   
+      
+    
     return Rover
+
+#def is_clear(Rover):
+#    clear=(np.sum(Rover.terrain(140:150,150:170) > 130) & /
+#           (np.sum(Rover.terrain(110:120,150:170) > 100) & /
+#            (np.sum(Rover.terrain(150:153,155:165) > 20)
+#    return clear
+             
