@@ -4,6 +4,8 @@
 Steps to do 
 1) Take the images for Kuka Arm from the Demo ( Rzviz & Gazebo)
 2) Label the Kuka Arms joints, Links,
+3) Create the DH Table
+4) 
 --------
 ### Writeup / README
 
