@@ -9,7 +9,9 @@ Steps to do
 
 #### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  
 
-You're reading it!
+This program will try to pick and place the objects from the shelf and drop them in the bin.
+This program uses the Kinematcis ( Forward and Inverse ) to calculate the positions and trajectory to drop in the bin.
+
 
 ### Kinematic Analysis
 #### 1. Run the forward_kinematics demo and evaluate the kr210.urdf.xacro file to perform kinematic analysis of Kuka KR210 robot and derive its DH parameters.
