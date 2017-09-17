@@ -12,13 +12,18 @@ Steps to do
 This program will try to pick and place the objects from the shelf and drop them in the bin.
 This program uses the Kinematcis ( Forward and Inverse ) to calculate the positions and trajectory to drop in the bin.
 
+[//]: # (Image References)
+
+[image1]: ./images/Kuka-Arm1.png
+[image2]: ./images/Kuka-Arm2.png
+[image3]: ./images/Label-Kuka-Arm.jpg
 
 ### Kinematic Analysis
 #### 1. Run the forward_kinematics demo and evaluate the kr210.urdf.xacro file to perform kinematic analysis of Kuka KR210 robot and derive its DH parameters.
 
-Here is an example of how to include an image in your writeup.
+Used the below two images to create the kuka-arm in 2D by labelling the joints, links in the XYZ axis.
 
-![alt text][image1]
+![alt text][image1]  
 
 #### 2. Using the DH parameter table you derived earlier, create individual transformation matrices about each joint. In addition, also generate a generalized homogeneous transform between base_link and gripper_link using only end-effector(gripper) pose.
 
