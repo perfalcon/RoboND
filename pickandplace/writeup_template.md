@@ -14,8 +14,8 @@ This program uses the Kinematcis ( Forward and Inverse ) to calculate the positi
 
 [//]: # (Image References)
 
-[image1]: ./images/Kuka-Arm1.png
-[image2]: ./images/Kuka-Arm2.png
+[image1]: ./images/Kuka-Arm1.PNG
+[image2]: ./images/Kuka-Arm2.PNG
 [image3]: ./images/Label-Kuka-Arm.jpg
 
 ### Kinematic Analysis
@@ -23,7 +23,14 @@ This program uses the Kinematcis ( Forward and Inverse ) to calculate the positi
 
 Used the below two images to create the kuka-arm in 2D by labelling the joints, links in the XYZ axis.
 
-![alt text][image1]  
+![KukaArm-Rzviz][image1]     ![KukaArm-Rzviz][image2] 
+
+
+This is the Kuka-Arm with all the labels.
+
+![Labelled-Kuka-Arm-2D][image3] 
+
+
 
 #### 2. Using the DH parameter table you derived earlier, create individual transformation matrices about each joint. In addition, also generate a generalized homogeneous transform between base_link and gripper_link using only end-effector(gripper) pose.
 
