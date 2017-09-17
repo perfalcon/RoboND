@@ -2,8 +2,8 @@
 ## Project: Kinematics Pick & Place
 ------
 Steps to do 
-1) Take the image
-2) 
+1) Take the images for Kuka Arm from the Demo ( Rzviz & Gazebo)
+2) Label the Kuka Arms joints, Links,
 --------
 ### Writeup / README
 
