@@ -83,11 +83,11 @@ Then calculated the rotations as
         
 #### 3. Decouple Inverse Kinematics problem into Inverse Position Kinematics and inverse Orientation Kinematics; doing so derive the equations to calculate all individual joint angles.
 
-And here's where you can draw out and show your math for the derivation of your theta angles. 
-
 Calculated the Theta angles as:
+
 Theta1:
-#Calculate WC:
+
+     #Calculate WC and then calculate theta using atan2 function.
       
       p_ee = Matrix([px,py,pz])
       WC = p_ee - R0_6 * Matrix([0, 0, s[d7]])
