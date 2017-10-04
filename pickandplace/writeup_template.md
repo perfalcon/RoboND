@@ -1,15 +1,6 @@
 
 ## Project: Kinematics Pick & Place
-------
-Steps to do 
-1) Take the images for Kuka Arm from the Demo ( Rzviz & Gazebo)
-2) Label the Kuka Arms joints, Links,
-3) Create the DH Table
-4) FK.-- done till here
-5) IK
-6) Code
-7) improvments
---------
+
 ### Writeup / README
 
 #### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one.  You can submit your writeup as markdown or pdf.  
@@ -141,4 +132,6 @@ Using the IK calculated the joint angles.
 
 Need to improve the accuracy of picking and placing more items.
 
+Please refer to the attached code in : 
+# IK_server.py.
 
