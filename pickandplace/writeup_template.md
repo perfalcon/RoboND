@@ -133,11 +133,12 @@ Following illustrations are used to derive the Theta angles
 
 #### 1. Fill in the `IK_server.py` file with properly commented python code for calculating Inverse Kinematics based on previously performed Kinematic Analysis. Your code must guide the robot to successfully complete 8/10 pick and place cycles. Briefly discuss the code you implemented and your results. 
 
+Followed a step by step approach to build this project.
+Initially created symbols and labelling the Kuka arm with joints, links, distances and etc.
+Then created the DH Transformation matrix and using the FK, created the individual transformation matrix with symbols then subsituted the DH parameters
+Calculated the rotation matrices and then the end-effector (wrist center) position and orientation from the  request.
+Using the IK calculated the joint angles.
 
-Here I'll talk about the code, what techniques I used, what worked and why, where the implementation might fail and how I might improve it if I were going to pursue this project further.  
-
-
-And just for fun, another example image:
-![alt text][image3]
+Need to improve the accuracy of picking and placing more items.
 
 
